@@ -172,7 +172,7 @@ h2 {
 .leaders {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 28px;
+  gap: 20px;
   margin-top: 40px;
 }
 
@@ -246,3 +246,4 @@ footer {
     letter-spacing: 1px;
   }
 }
+
