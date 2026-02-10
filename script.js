@@ -1,71 +1,54 @@
-/* =========================
-   MOBILE NAV TOGGLE
-========================= */
-function toggleMenu() {
-  const menu = document.getElementById("navMenu");
-  menu.classList.toggle("active");
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+let particles = [];
+const particleCount = window.innerWidth < 768 ? 35 : 70;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+class Particle {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.radius = Math.random() * 1.6 + 0.4;
+    this.speed = Math.random() * 0.3 + 0.1;
+    this.opacity = Math.random() * 0.5 + 0.2;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
+    ctx.fill();
+  }
+
+  update() {
+    this.y -= this.speed;
+    if (this.y < 0) {
+      this.y = canvas.height;
+      this.x = Math.random() * canvas.width;
+    }
+    this.draw();
+  }
 }
 
-/* =========================
-   CLOSE MENU AFTER CLICK
-========================= */
-document.querySelectorAll("#navMenu a").forEach(link => {
-  link.addEventListener("click", () => {
-    const menu = document.getElementById("navMenu");
-    menu.classList.remove("active");
-  });
-});
-
-/* =========================
-   SMOOTH SCROLL
-========================= */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
-  });
-});
-
-/* =========================
-   SCROLL FADE-IN ANIMATION
-========================= */
-const observer = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
-      }
-    });
-  },
-  { threshold: 0.15 }
-);
-
-document.querySelectorAll(".section, .card, .leader").forEach(el => {
-  el.classList.add("hidden");
-  observer.observe(el);
-});
-
-/* =========================
-   NAVBAR SHADOW ON SCROLL
-========================= */
-window.addEventListener("scroll", () => {
-  const navbar = document.querySelector(".navbar");
-  if (window.scrollY > 20) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
+function initParticles() {
+  particles = [];
+  for (let i = 0; i < particleCount; i++) {
+    particles.push(new Particle());
   }
-});
+}
 
-/* =========================
-   PAGE LOADED EFFECT
-========================= */
-window.addEventListener("load", () => {
-  document.body.classList.add("loaded");
-});
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => p.update());
+  requestAnimationFrame(animateParticles);
+}
+
+initParticles();
+animateParticles();
