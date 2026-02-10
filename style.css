@@ -1,3 +1,78 @@
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 15px 4%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.nav-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  color: #ff4d00;
+  letter-spacing: 1px;
+}
+
+.navbar nav a {
+  margin-left: 22px;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.navbar nav a:hover {
+  opacity: 1;
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+/* Prevent navbar overlap (visual only) */
+.hero {
+  padding-top: 80px;
+}
+
+/* ===== MOBILE MENU ===== */
+@media (max-width: 768px) {
+  .navbar nav {
+    position: absolute;
+    top: 60px;
+    right: 8%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 14px;
+    padding: 18px;
+    display: none;
+  }
+
+  .navbar nav a {
+    display: block;
+    margin: 12px 0;
+  }
+
+  .navbar nav.active {
+    display: block;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+
 /* ===== RESET ===== */
 * {
   margin: 0;
@@ -172,7 +247,7 @@ h2 {
 .leaders {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  gap: 28px;
   margin-top: 40px;
 }
 
@@ -246,4 +321,3 @@ footer {
     letter-spacing: 1px;
   }
 }
-
