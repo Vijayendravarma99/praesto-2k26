@@ -10,8 +10,24 @@
 </head>
 <body>
 
+<!-- ===== NAVBAR ===== -->
+<header class="navbar">
+  <div class="nav-logo">ADSC</div>
+
+  <nav id="navMenu">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#domains">Domains</a>
+    <a href="#highlights">Event Highlights</a>
+    <a href="#register">Registration</a>
+  </nav>
+
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+</header>
+  
+
 <!-- ================= HERO ================= -->
-<section class="hero">
+<section class="hero" id="hero">
   <div class="bg-gradient"></div>
   <canvas id="particles"></canvas>
 
@@ -28,7 +44,7 @@
 </section>
 
 <!-- ================= ABOUT ================= -->
-<section class="about">
+<section class="about" id="about">
   <h2>About PRAESTO</h2>
   <p>
     <strong>PRAESTO 2K26</strong> is the flagship technical fest organized by the
@@ -40,7 +56,7 @@
 </section>
 
 <!-- ================= DOMAINS ================= -->
-<section class="domains" id="events">
+<section class="domains" id="domains">
   <h2>Domains & Tracks</h2>
   <div class="domain-grid">
     <div class="domain-card">Web Development</div>
@@ -52,7 +68,7 @@
 </section>
 
 <!-- ================= HIGHLIGHTS ================= -->
-<section class="highlights">
+<section class="highlights" id="highlights">
   <h2>Event Highlights</h2>
   <ul>
     <li>Hands-on Technical Sessions</li>
@@ -96,7 +112,7 @@
 </section>
 
 <!-- ================= REGISTRATION ================= -->
-<section class="register">
+<section class="register" id="register">
   <h2>Registration</h2>
   <p class="register-text">
     Secure online registration with seamless verification.
