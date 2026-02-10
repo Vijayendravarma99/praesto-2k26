@@ -1,3 +1,17 @@
+/* ===== NAVBAR TOGGLE ===== */
+function toggleMenu() {
+  document.getElementById("navMenu").classList.toggle("active");
+}
+
+/* Close menu after clicking link (mobile) */
+document.querySelectorAll("#navMenu a").forEach(link => {
+  link.addEventListener("click", () => {
+    document.getElementById("navMenu").classList.remove("active");
+  });
+});
+
+
+
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
 
