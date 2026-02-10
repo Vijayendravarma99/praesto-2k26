@@ -1,21 +1,32 @@
+/* =========================
+   GLOBAL RESET
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   background: #050505;
-  color: #fff;
+  color: #ffffff;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
-/* NAVBAR */
+/* =========================
+   NAVBAR
+========================= */
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: #000;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.95);
   padding: 15px 8%;
   display: flex;
   justify-content: space-between;
@@ -24,35 +35,74 @@ body {
 
 .logo {
   font-family: 'Orbitron', sans-serif;
-  color: #ff4d00;
+  font-size: 1.1rem;
   font-weight: 700;
+  color: #ff4d00;
+  letter-spacing: 1px;
+}
+
+.navbar nav {
+  display: flex;
+  align-items: center;
 }
 
 .navbar nav a {
-  margin-left: 20px;
+  margin-left: 24px;
   text-decoration: none;
-  color: #fff;
+  color: #ffffff;
   font-size: 0.9rem;
+  position: relative;
+  opacity: 0.9;
+}
+
+.navbar nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: #ff4d00;
+  left: 0;
+  bottom: -6px;
+  transition: 0.3s;
+}
+
+.navbar nav a:hover::after {
+  width: 100%;
 }
 
 .hamburger {
   display: none;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   cursor: pointer;
+  color: #ffffff;
 }
 
-/* HERO */
+/* Scroll shadow */
+.navbar.scrolled {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+}
+
+/* =========================
+   HERO SECTION
+========================= */
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 0 8%;
+  background: radial-gradient(circle at top, #141414, #050505);
+}
+
+.hero-content {
+  max-width: 900px;
 }
 
 .hero h1 {
   font-family: 'Orbitron', sans-serif;
-  font-size: clamp(2.8rem, 6vw, 4rem);
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  letter-spacing: 3px;
 }
 
 .hero h1 span {
@@ -60,29 +110,43 @@ body {
 }
 
 .tagline {
-  margin-top: 10px;
-  opacity: 0.8;
+  margin-top: 12px;
+  font-size: 1.1rem;
+  opacity: 0.85;
 }
 
 .dates {
-  margin-top: 8px;
-  color: #ffb347;
+  margin-top: 10px;
   font-weight: 600;
+  color: #ffb347;
 }
 
-/* BUTTONS */
+.hero-buttons {
+  margin-top: 35px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
 .btn {
   display: inline-block;
-  padding: 12px 26px;
+  padding: 12px 28px;
   border-radius: 30px;
-  text-decoration: none;
   font-weight: 600;
-  margin: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin: 8px;
+  cursor: pointer;
 }
 
 .primary {
   background: linear-gradient(135deg, #ff4d00, #ff0000);
-  color: #fff;
+  color: #ffffff;
+  box-shadow: 0 0 25px rgba(255, 77, 0, 0.6);
+}
+
+.primary:hover {
+  transform: translateY(-3px) scale(1.05);
 }
 
 .outline {
@@ -90,87 +154,195 @@ body {
   color: #ff4d00;
 }
 
-/* SECTIONS */
+.outline:hover {
+  background: #ff4d00;
+  color: #000000;
+}
+
+/* =========================
+   SECTIONS
+========================= */
 .section {
-  padding: 80px 10%;
+  padding: 90px 10%;
   text-align: center;
 }
 
 .dark {
-  background: #0a0a0a;
+  background: #0b0b0b;
+}
+
+.section h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: #ff4d00;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
 }
 
 .section-text {
   max-width: 900px;
   margin: auto;
+  font-size: 1rem;
   opacity: 0.9;
   line-height: 1.7;
 }
 
-/* GRID */
+/* =========================
+   GRID LAYOUT
+========================= */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 25px;
-  margin-top: 40px;
+  margin-top: 45px;
 }
 
-.card, .leader {
-  background: #111;
-  padding: 30px;
-  border-radius: 15px;
+/* =========================
+   DOMAIN CARDS
+========================= */
+.card {
+  background: #111111;
+  padding: 35px 25px;
+  border-radius: 16px;
+  border: 1px solid #1f1f1f;
+  font-weight: 600;
+  transition: all 0.35s ease;
 }
 
-.avatar {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #ff4d00, #ff0000);
-  border-radius: 50%;
-  margin: 0 auto 15px;
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(255, 77, 0, 0.35);
 }
 
-/* HIGHLIGHTS */
+/* =========================
+   HIGHLIGHTS
+========================= */
 .highlights {
   list-style: none;
-  margin-top: 30px;
+  margin-top: 35px;
 }
 
 .highlights li {
-  margin: 12px 0;
+  margin: 14px 0;
+  font-size: 1.05rem;
+  opacity: 0.9;
 }
 
-/* REGISTER */
+/* =========================
+   LEADERSHIP
+========================= */
+.leader {
+  background: #101010;
+  padding: 35px 25px;
+  border-radius: 18px;
+  border: 1px solid #1f1f1f;
+  transition: 0.3s;
+}
+
+.leader:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(255, 77, 0, 0.35);
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff4d00, #ff0000);
+  margin: 0 auto 18px;
+}
+
+.leader h4 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.leader p {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* =========================
+   REGISTER SECTION
+========================= */
 .register {
-  background: linear-gradient(135deg, #0f0f0f, #141414);
+  background: linear-gradient(135deg, #0f0f0f, #151515);
 }
 
-/* FOOTER */
+.register .btn {
+  margin-top: 25px;
+}
+
+/* =========================
+   FOOTER
+========================= */
 footer {
-  padding: 30px;
-  background: #000;
+  background: #000000;
+  padding: 35px 10%;
   text-align: center;
   font-size: 0.85rem;
   opacity: 0.8;
 }
 
-/* MOBILE */
+/* =========================
+   SCROLL ANIMATIONS
+========================= */
+.hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
 @media (max-width: 768px) {
+
+  .navbar {
+    padding: 15px 6%;
+  }
+
   .navbar nav {
-    display: none;
     position: absolute;
-    top: 60px;
-    right: 8%;
-    background: #000;
+    top: 65px;
+    right: 6%;
+    background: #000000;
+    flex-direction: column;
+    width: 220px;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 14px;
+    display: none;
+  }
+
+  #navMenu.active {
+    display: block;
   }
 
   .navbar nav a {
-    display: block;
-    margin: 10px 0;
+    margin: 12px 0;
   }
 
   .hamburger {
     display: block;
+  }
+
+  .section {
+    padding: 70px 7%;
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
   }
 }
